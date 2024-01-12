@@ -19,7 +19,7 @@ function activate(context) {
       <html>
         <head></head>
         <body>
-          <iframe width="100%" height="100%"
+          <iframe sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%"
             src="https://studio.penguinmod.com/editor.html?livetests">
             <script>
               const frame = window.frames[0];
