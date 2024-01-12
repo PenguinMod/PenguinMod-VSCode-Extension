@@ -11,7 +11,7 @@ function activate(context) {
         "pm",
         "PenguinMod",
         vscode.ViewColumn.One,
-        {}
+        {enableScripts: true}
       );
       const code = new Buffer.from(vscode.window.activeTextEditor.document.getText()).toString("base64");
       
