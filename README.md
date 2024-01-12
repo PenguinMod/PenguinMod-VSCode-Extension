@@ -1,8 +1,8 @@
-# Hello World Minimal Sample
+# PenguinMod Vs Code Extension
 
-This is a minimal version of the [Hello World Sample](../helloworld-sample).
+What it does it's that it embeds pm and inject your extension there for testing
 
-It does not use TypeScript and only includes the `vscode` devDependency needed for extension development.
+It uses javascript and the only dependency is vscode module
 
 ## VS Code API
 
@@ -11,11 +11,7 @@ It does not use TypeScript and only includes the `vscode` devDependency needed f
 - [`commands.registerCommand`](https://code.visualstudio.com/api/references/vscode-api#commands.registerCommand)
 - [`window.showInformationMessage`](https://code.visualstudio.com/api/references/vscode-api#window.showInformationMessage)
 
-### Contribution Points
-
-- [`contributes.commands`](https://code.visualstudio.com/api/references/contribution-points#contributes.commands)
-
-## Running the Sample
+## Running it
 
 - Run `npm install` in terminal to install dependencies
 - Run the `Run Extension` target in the Debug View.
