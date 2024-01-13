@@ -21,15 +21,14 @@ function activate(context) {
       <html>
         <head></head>
         <body>
-          <iframe name="e" sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%" src="https://studio.penguinmod.com/editor.html?livetests">
+          <iframe name="e" sandbox="allow-scripts allow-popups allow-same-origin" width="100vw" height="100vh" src="https://studio.penguinmod.com/editor.html?livetests">
           const frame = window.frames["e"];
-          frame.contentWindow.onload = () => {
+          frame.contentWindow.eval('
             setTimeout(() => {
               vm.runtime.on("PROJECT_LOADED", () => {
                 vm.loadExtensionURL("data:text/plain;base64,${code}");
               });
-            }, 3 * 1000);
-          };          
+            }, 6 * 1000);')          
           </script>
           </body>
         </html>`;
