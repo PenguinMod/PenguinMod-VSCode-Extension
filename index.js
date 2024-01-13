@@ -11,22 +11,28 @@ function activate(context) {
         "pm",
         "PenguinMod",
         vscode.ViewColumn.One,
-        {enableScripts: true}
+        { enableScripts: true }
       );
-      const code = new Buffer.from(vscode.window.activeTextEditor.document.getText()).toString("base64");
-      
+      const code = new Buffer.from(
+        vscode.window.activeTextEditor.document.getText()
+      ).toString("base64");
+
       panel.webview.html = `<!DOCTYPE html>
       <html>
         <head></head>
         <body>
-          <iframe name="e" sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%"
-            src="https://studio.penguinmod.com/editor.html?livetests">
-            <script>
-              const frame = window.frames["e"];
-              frame.contentWindow.eval('vm.runtime.on("PROJECT_LOADED", () => {vm.loadExtensionURL("data:text/plain;base64,${code}")})');
-            </script>
+          <iframe name="e" sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%" src="https://studio.penguinmod.com/editor.html?livetests">
+          const frame = window.frames["e"];
+          frame.contentWindow.onload = () => {
+            setTimeout(() => {
+              vm.runtime.on("PROJECT_LOADED", () => {
+                vm.loadExtensionURL("data:text/plain;base64,${code}");
+              });
+            }, 3 * 1000);
+          };          
+          </script>
           </body>
-        </html>`
+        </html>`;
     }
   );
 
