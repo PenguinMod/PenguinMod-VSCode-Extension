@@ -16,18 +16,18 @@ function activate(context) {
       const code = new Buffer.from(
         vscode.window.activeTextEditor.document.getText()
       ).toString("base64");
-      console.log(code);
+      //console.log(code);
       panel.webview.html = `<!DOCTYPE html>
       <html>
         <head></head>
         <body>
-          <iframe sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%" src="https://studio.penguinmod.com/editor.html?livetests">
+          <iframe id="f" sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%" src="https://studio.penguinmod.com/editor.html?livetests">
           <script>
-          const frame = window.frames[0].contentWindow;
-          frame.vm.extensionManager.securityManager.getSandboxMode = () => {
-              return "unsandboxed";
-            };
-            frame.vm.loadExtensionURL("data:text/plain;base64,${code}");         
+          const frame = document.getElementById("f").contentWindow;
+          setTimeout(() => {frame.vm.extensionManager.securityManager.getSandboxMode = () => {
+            return "unsandboxed";
+          };
+        frame.vm.loadExtensionURL("data:text/plain;base64,${code}");}, 10 * 1000)         
           </script>
           </body>
         </html>`;
