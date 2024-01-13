@@ -27,7 +27,7 @@ function activate(context) {
           setTimeout(() => {frame.vm.extensionManager.securityManager.getSandboxMode = () => {
             return "unsandboxed";
           };
-        frame.vm.loadExtensionURL("data:text/plain;base64,${code}");}, 10 * 1000)         
+          frame.vm.loadExtensionURL("data:text/plain;base64,${code}");}, 15 * 1000);       
           </script>
           </body>
         </html>`;
