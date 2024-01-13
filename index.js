@@ -19,11 +19,11 @@ function activate(context) {
       <html>
         <head></head>
         <body>
-          <iframe sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%"
+          <iframe name="e" sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%"
             src="https://studio.penguinmod.com/editor.html?livetests">
             <script>
-              const frame = window.frames[0];
-              frame.window.eval('vm.runtime.on("PROJECT_LOADED", () => {vm.loadExtensionURL("data:text/plain;base64,${code}")})')
+              const frame = window.frames["e"];
+              frame.contentWindow.eval('vm.runtime.on("PROJECT_LOADED", () => {vm.loadExtensionURL("data:text/plain;base64,${code}")})');
             </script>
           </body>
         </html>`
