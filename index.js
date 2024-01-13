@@ -16,21 +16,18 @@ function activate(context) {
       const code = new Buffer.from(
         vscode.window.activeTextEditor.document.getText()
       ).toString("base64");
-
+      console.log(code);
       panel.webview.html = `<!DOCTYPE html>
       <html>
         <head></head>
         <body>
-          <iframe sandbox="allow-scripts allow-popups allow-same-origin" width="200%" height="200%" src="https://studio.penguinmod.com/editor.html?livetests">
+          <iframe sandbox="allow-scripts allow-popups allow-same-origin" width="100%" height="100%" src="https://studio.penguinmod.com/editor.html?livetests">
           <script>
-          const frame = window.frames[0];
-          frame.contentWindow.eval(\`
-          vm.runtime.on("PROJECT_LOADED", () => {
-            vm.extensionManager.securityManager.getSandboxMode = () => {
+          const frame = window.frames[0].contentWindow;
+          frame.vm.extensionManager.securityManager.getSandboxMode = () => {
               return "unsandboxed";
             };
-            vm.loadExtensionURL("data:text/plain;base64,${code}");
-          });\`)          
+            frame.vm.loadExtensionURL("data:text/plain;base64,${code}");         
           </script>
           </body>
         </html>`;
@@ -40,7 +37,7 @@ function activate(context) {
   context.subscriptions.push(disposable);
 }
 
-function deactivate() {}
+function deactivate() { }
 
 module.exports = {
   activate,
