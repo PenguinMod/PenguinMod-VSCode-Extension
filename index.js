@@ -24,7 +24,7 @@ function activate(context) {
             <script>
               const frame = window.frames[0];
               frame.window.onload = () => {
-                vm.loadExtensionURL("data:text/plain;base64,${code}")
+                vm.runtime.on("PROJECT_LOADED", () => {vm.loadExtensionURL("data:text/plain;base64,${code}")})
               }
             </script>
           </body>
