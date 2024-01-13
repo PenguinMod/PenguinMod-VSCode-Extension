@@ -23,9 +23,7 @@ function activate(context) {
             src="https://studio.penguinmod.com/editor.html?livetests">
             <script>
               const frame = window.frames[0];
-              frame.window.onload = () => {
-                vm.runtime.on("PROJECT_LOADED", () => {vm.loadExtensionURL("data:text/plain;base64,${code}")})
-              }
+              frame.window.eval('vm.runtime.on("PROJECT_LOADED", () => {vm.loadExtensionURL("data:text/plain;base64,${code}")})')
             </script>
           </body>
         </html>`
